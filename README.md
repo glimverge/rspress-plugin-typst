@@ -126,8 +126,13 @@ https://glimverge.github.io/rspress-plugin-typst/
 ```bash
 pnpm install
 pnpm build
-pnpm test
+pnpm test        # unit tests
+pnpm test:e2e    # Playwright against playground docs
 ```
+
+E2E builds the plugin + playground, previews the site at
+`/rspress-plugin-typst/`, and asserts Typst pages render in the browser.
+CI runs the same suite in the `e2e` job.
 
 ## Publishing
 
