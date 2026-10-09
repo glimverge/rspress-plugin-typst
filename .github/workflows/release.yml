@@ -44,5 +44,6 @@ jobs:
         run: pnpm build
 
       - name: Publish to npm
+        # Use npm (not pnpm) so GitHub OIDC trusted publishing works reliably.
         # Prereleases use dist-tag "alpha". For a stable release, use --tag latest.
-        run: pnpm publish --access public --no-git-checks --tag alpha
+        run: npm publish --access public --tag alpha
