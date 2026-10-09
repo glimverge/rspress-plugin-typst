@@ -1,0 +1,86 @@
+{
+  "name": "rspress-plugin-typst",
+  "version": "0.1.0",
+  "description": "Rspress plugin that treats Typst (.typ) files as documentation pages via experimental HTML export.",
+  "keywords": [
+    "rspress",
+    "rspress-plugin",
+    "typst",
+    "documentation",
+    "html"
+  ],
+  "homepage": "https://glimverge.github.io/rspress-plugin-typst/",
+  "bugs": {
+    "url": "https://github.com/glimverge/rspress-plugin-typst/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glimverge/rspress-plugin-typst.git"
+  },
+  "license": "MIT",
+  "author": "Glimverge",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime/index.d.ts",
+      "import": "./dist/runtime/index.js",
+      "default": "./dist/runtime/index.js"
+    },
+    "./loader": {
+      "types": "./dist/loader.d.ts",
+      "import": "./dist/loader.js",
+      "default": "./dist/loader.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "rslib build",
+    "dev": "rslib build --watch",
+    "test": "pnpm build && node --experimental-strip-types --test tests/**/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "playground:dev": "pnpm --filter playground dev",
+    "playground:build": "pnpm --filter playground build",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0",
+    "fast-glob": "^3.3.3"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.59.4",
+    "@rsbuild/plugin-react": "^1.4.0",
+    "@rslib/core": "^1.0.3",
+    "@rspress/core": "^2.0.23",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.12",
+    "react": "^19.0.0",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "peerDependencies": {
+    "@rspress/core": "^1.40.0 || ^2.0.0",
+    "react": ">=17.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

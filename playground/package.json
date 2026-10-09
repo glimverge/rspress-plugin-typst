@@ -1,0 +1,22 @@
+{
+  "name": "playground",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "rspress dev",
+    "build": "rspress build",
+    "preview": "rspress preview"
+  },
+  "dependencies": {
+    "@rspress/core": "^2.0.23",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "rspress-plugin-typst": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.12",
+    "typescript": "^5.8.2"
+  }
+}

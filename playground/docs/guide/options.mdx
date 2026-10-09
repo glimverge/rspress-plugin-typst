@@ -1,0 +1,41 @@
+# Options
+
+```ts
+pluginTypst({
+  extensions: ['.typ'],
+  include: ['**/*.typ'],
+  exclude: ['**/_*', '**/_*/**'],
+  fontPaths: ['assets/fonts'],
+  inputs: { site: 'My Docs' },
+  workspace: undefined,
+  className: 'rspress-typst',
+  routeExtensions: true,
+})
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `extensions` | `['.typ']` | File extensions treated as Typst docs |
+| `include` | all `.typ` under docs root | Globs relative to the docs root |
+| `exclude` | underscore-prefixed files/dirs | Ignore patterns |
+| `fontPaths` | `undefined` | Extra font directories for the compiler |
+| `inputs` | `undefined` | Extra `sys.inputs` string pairs |
+| `workspace` | docs root | Typst workspace / package root |
+| `className` | `'rspress-typst'` | Wrapper class on the rendered body |
+| `routeExtensions` | `true` | Register extensions on `route.extensions` |
+
+## `sys.inputs`
+
+```ts
+pluginTypst({
+  inputs: {
+    site: 'My Docs',
+  },
+})
+```
+
+```typ
+Site: #sys.inputs.at("site", default: "unknown")
+```
+
+See the live example on [Math & Code](/guide/math).

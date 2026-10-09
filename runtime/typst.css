@@ -1,0 +1,43 @@
+/* Minimal polish for Typst experimental HTML inside Rspress docs. */
+.rspress-typst {
+  min-width: 0;
+}
+
+.rspress-typst > div {
+  display: contents;
+}
+
+.rspress-typst :where(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 5rem;
+}
+
+.rspress-typst :where(pre, code) {
+  font-family: var(
+    --rp-font-family-mono,
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Liberation Mono',
+    'Courier New',
+    monospace
+  );
+}
+
+.rspress-typst :where(table) {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.rspress-typst :where(th, td) {
+  border: 1px solid var(--rp-c-divider, #e2e8f0);
+  padding: 0.5rem 0.75rem;
+}
+
+.rspress-typst :where(img, svg) {
+  max-width: 100%;
+  height: auto;
+}
