@@ -1,0 +1,68 @@
+# Getting Started
+
+## Install
+
+```bash
+pnpm add rspress-plugin-typst
+# or
+npm i rspress-plugin-typst
+# or
+yarn add rspress-plugin-typst
+```
+
+## Enable the plugin
+
+```ts title="rspress.config.ts"
+import { defineConfig } from '@rspress/core';
+import { pluginTypst } from 'rspress-plugin-typst';
+
+export default defineConfig({
+  root: 'docs',
+  plugins: [pluginTypst()],
+});
+```
+
+## Write a Typst page
+
+```typ title="docs/guide/hello.typ"
+#set document(
+  title: "Hello Typst",
+  description: "Rendered by rspress-plugin-typst",
+)
+
+= Hello Typst
+
+This page is compiled to HTML and served by Rspress.
+```
+
+Open `/guide/hello` after `rspress dev` / `rspress build`.
+
+## Frontmatter
+
+Prefer Typst document metadata:
+
+```typ
+#set document(
+  title: "Hello Typst",
+  description: "Rendered by rspress-plugin-typst",
+)
+```
+
+Optional Rspress-oriented frontmatter:
+
+```typ
+#metadata((
+  title: "Hello Typst",
+  description: "Rendered by rspress-plugin-typst",
+  outline: true,
+)) <frontmatter>
+```
+
+Values from `<frontmatter>` override `#set document(...)` when both are present for `title`.
+
+## How it works
+
+1. **`config`** — registers `.typ` on Rspress `route.extensions`
+2. **`beforeBuild`** — compiles Typst pages for titles, TOC, and search text
+3. **Rspack loader** — transforms each `.typ` route into a React page
+4. **Compiler** — `@myriaddreamin/typst-ts-node-compiler` runs Typst HTML export

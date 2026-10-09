@@ -1,13 +1,52 @@
 # rspress-plugin-typst
 
-Write documentation pages in [Typst](https://typst.app/) and render them through Typst's experimental HTML export inside [Rspress](https://rspress.rs/).
+Use [Typst](https://typst.app/) `.typ` files as [Rspress](https://rspress.rs/) documentation pages.
 
-## Why Typst?
+Typst's experimental HTML export is compiled through
+[`@myriaddreamin/typst-ts-node-compiler`](https://www.npmjs.com/package/@myriaddreamin/typst-ts-node-compiler),
+then rendered inside the Rspress theme.
 
-- Familiar typesetting for technical writing
-- First-class math and structured content
-- Compiles through a Rust-powered Node-API binding
+:::warning Experimental
+Typst HTML export is still experimental. Behavior may change; do not rely on it for production-critical publishing yet.
+:::
 
-## Try it
+## Features
 
-Open the [Hello Typst](/guide/hello) page — it is authored as `guide/hello.typ`.
+- Conventional routing: `docs/guide/hello.typ` → `/guide/hello`
+- Document title / description from `#set document(...)`
+- Optional frontmatter via `#metadata(...) <frontmatter>`
+- Searchable plain-text content extracted from the HTML body
+- Heading ids for outline anchors
+
+## Quick start
+
+```bash
+pnpm add rspress-plugin-typst
+```
+
+```ts
+// rspress.config.ts
+import { defineConfig } from '@rspress/core';
+import { pluginTypst } from 'rspress-plugin-typst';
+
+export default defineConfig({
+  root: 'docs',
+  plugins: [pluginTypst()],
+});
+```
+
+Then add Typst pages next to Markdown:
+
+```text
+docs/
+  index.mdx
+  guide/
+    hello.typ
+```
+
+## Live examples
+
+These pages are authored as `.typ` files in this docs site:
+
+- [Hello Typst](/guide/hello)
+- [Math & Code](/guide/math)

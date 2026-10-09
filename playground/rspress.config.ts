@@ -2,14 +2,32 @@ import path from 'node:path';
 import { defineConfig } from '@rspress/core';
 import { pluginTypst } from 'rspress-plugin-typst';
 
+const repo = 'rspress-plugin-typst';
+const siteOrigin = 'https://glimverge.github.io';
+
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  title: 'Rspress + Typst',
-  description: 'Demo site for rspress-plugin-typst',
+  title: 'rspress-plugin-typst',
+  description:
+    'Use Typst .typ files as Rspress documentation pages via experimental HTML export.',
+  // Project site: https://glimverge.github.io/rspress-plugin-typst/
+  base: `/${repo}/`,
+  siteOrigin,
   themeConfig: {
+    socialLinks: [
+      {
+        icon: 'github',
+        mode: 'link',
+        content: 'https://github.com/glimverge/rspress-plugin-typst',
+      },
+    ],
     nav: [
       {
         text: 'Guide',
+        link: '/guide/getting-started',
+      },
+      {
+        text: 'Examples',
         link: '/guide/hello',
       },
       {
@@ -20,9 +38,16 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: 'Introduction',
+          text: 'Guide',
           items: [
-            { text: 'Overview', link: '/' },
+            { text: 'Introduction', link: '/' },
+            { text: 'Getting Started', link: '/guide/getting-started' },
+            { text: 'Options', link: '/guide/options' },
+          ],
+        },
+        {
+          text: 'Examples',
+          items: [
             { text: 'Hello Typst', link: '/guide/hello' },
             { text: 'Math & Code', link: '/guide/math' },
           ],
@@ -32,9 +57,8 @@ export default defineConfig({
   },
   plugins: [
     pluginTypst({
-      // Typst experimental HTML export powered by Rust (typst-ts-node-compiler).
       inputs: {
-        site: 'Rspress + Typst',
+        site: 'rspress-plugin-typst',
       },
     }),
   ],

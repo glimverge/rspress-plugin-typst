@@ -1,11 +1,11 @@
 #set document(
   title: "Hello Typst",
-  description: "A Typst documentation page rendered by rspress-plugin-typst",
+  description: "Example Typst documentation page rendered by rspress-plugin-typst",
 )
 
 #metadata((
   title: "Hello Typst",
-  description: "A Typst documentation page rendered by rspress-plugin-typst",
+  description: "Example Typst documentation page rendered by rspress-plugin-typst",
 )) <frontmatter>
 
 = Hello Typst

@@ -25,4 +25,4 @@ fn greet(name: &str) -> String {
 
 == Sys inputs
 
-Site name from plugin `inputs`: #sys.inputs.at("site", default: "unknown")
+Plugin `inputs.site`: #sys.inputs.at("site", default: "unknown")
