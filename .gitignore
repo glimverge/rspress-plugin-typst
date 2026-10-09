@@ -11,5 +11,4 @@ playground/docs/.rspress
 .turbo
 .idea
 .vscode
-crates/**/target
 *.node
