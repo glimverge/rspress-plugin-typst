@@ -131,18 +131,24 @@ pnpm test
 
 ## Publishing
 
-npm releases use the reusable workflow from [`sxzz/workflows`](https://github.com/sxzz/workflows).
+The [Release](.github/workflows/release.yml) workflow follows the
+[`sxzz/workflows`](https://github.com/sxzz/workflows) publish flow (checkout →
+install → changelogithub → build → `pnpm publish`), inlined so every action can
+stay SHA-pinned under this repo’s policy.
 
-1. Configure npm trusted publishing for this GitHub repo (OIDC; no long-lived token).
-2. Push a version tag:
+1. Configure npm trusted publishing for this GitHub repo (OIDC).
+2. Bump `package.json` version, then push a tag:
 
 ```bash
-# bump package.json version first, then:
-git tag v0.0.1
-git push origin v0.0.1
+git tag v0.0.2-alpha.0
+git push origin v0.0.2-alpha.0
 ```
 
-The [Release](.github/workflows/release.yml) workflow builds the package and publishes to npm with `--access public`.
+Prereleases currently publish with npm dist-tag `alpha`:
+
+```bash
+pnpm add rspress-plugin-typst@alpha
+```
 
 ## License
 
