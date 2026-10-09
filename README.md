@@ -129,6 +129,21 @@ pnpm build
 pnpm test
 ```
 
+## Publishing
+
+npm releases use the reusable workflow from [`sxzz/workflows`](https://github.com/sxzz/workflows).
+
+1. Configure npm trusted publishing for this GitHub repo (OIDC; no long-lived token).
+2. Push a version tag:
+
+```bash
+# bump package.json version first, then:
+git tag v0.0.1
+git push origin v0.0.1
+```
+
+The [Release](.github/workflows/release.yml) workflow builds the package and publishes to npm with `--access public`.
+
 ## License
 
 MIT

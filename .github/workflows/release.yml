@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    # Pinned for repo policy (actions must use full-length commit SHAs).
+    # Source: https://github.com/sxzz/workflows
+    uses: sxzz/workflows/.github/workflows/release.yml@e3b122062c0844efea9328bd56c06ac337d72bc7 # main
+    with:
+      publish: true
+      # Build dist/ before npm publish (see package.json prepublishOnly / files).
+      build: pnpm build
+    permissions:
+      contents: write
+      id-token: write
