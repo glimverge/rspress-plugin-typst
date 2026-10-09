@@ -1,6 +1,6 @@
 {
   "name": "rspress-plugin-typst",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.0",
   "description": "Rspress plugin that treats Typst (.typ) files as documentation pages via experimental HTML export.",
   "keywords": [
     "rspress",
@@ -67,7 +67,7 @@
     "react": "^19.0.0",
     "typescript": "^5.8.2"
   },
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@12.11.1",
   "peerDependencies": {
     "@rspress/core": "^1.40.0 || ^2.0.0",
     "react": ">=17.0.0"
