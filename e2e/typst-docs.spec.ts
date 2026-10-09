@@ -53,6 +53,17 @@ test.describe('rspress-plugin-typst docs site', () => {
     await expect(page.locator('.rspress-typst')).toContainText('Conventional routing');
   });
 
+  test('Hello Typst outline links to heading anchors', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto(`${basePath}/guide/hello.html`);
+
+    const outline = page.locator('.rp-doc-layout__outline');
+    await expect(outline.getByRole('link', { name: 'What you get' })).toBeVisible();
+    await outline.getByRole('link', { name: 'Sample content' }).click();
+    await expect(page).toHaveURL(/#sample-content$/);
+    await expect(page.locator('h3#sample-content')).toBeVisible();
+  });
+
   test('getting started guide is available', async ({ page }) => {
     await page.goto(`${basePath}/guide/getting-started.html`);
     await expect(

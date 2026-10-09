@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { NodeCompiler } from '@myriaddreamin/typst-ts-node-compiler';
-import { enhanceHeadings, htmlToPlainText } from './html.js';
+import { enhanceHeadings } from './html.js';
 import type {
   TypstCompileResult,
   TypstFrontmatter,
@@ -93,7 +93,7 @@ export function compileTypstFile(
   }
 
   const frontmatter = queryFrontmatter(compiler, mainFilePath);
-  const { html: body, toc } = enhanceHeadings(output.body());
+  const { html: body, toc, textContent } = enhanceHeadings(output.body());
   const html = output.html();
   const title =
     (typeof frontmatter.title === 'string' && frontmatter.title) ||
@@ -104,8 +104,6 @@ export function compileTypstFile(
       frontmatter.description) ||
     output.description() ||
     undefined;
-
-  const textContent = htmlToPlainText(body);
 
   // Keep memory bounded across many pages in watch mode.
   compiler.evictCache(10);

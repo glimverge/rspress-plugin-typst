@@ -71,6 +71,11 @@ export interface TypstTocItem {
   id: string;
   text: string;
   depth: number;
+  /**
+   * Start offset of this heading in `textContent`.
+   * Rspress search uses it to attach a content hit to a heading.
+   */
+  charIndex: number;
 }
 
 export interface TypstLoaderOptions {

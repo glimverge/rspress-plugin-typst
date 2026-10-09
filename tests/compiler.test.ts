@@ -32,6 +32,8 @@ Hello from *Typst*.
     assert.match(result.body, /Welcome/);
     assert.match(result.body, /Hello from/);
     assert.equal(result.frontmatter.draft, false);
-    assert.ok(result.textContent.includes('Welcome'));
+    assert.equal(result.toc[0]?.text, 'Welcome');
+    assert.equal(result.toc[0]?.charIndex, 0);
+    assert.match(result.textContent, /^Welcome\n\nHello from Typst/);
   });
 });

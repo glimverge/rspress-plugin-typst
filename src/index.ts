@@ -10,7 +10,7 @@ import {
 } from './cache.js';
 import { compileTypstFile, createCompilerContext } from './compiler.js';
 import { scanTypstPages } from './scan.js';
-import type { TypstPluginOptions } from './types.js';
+import type { TypstPluginOptions, TypstTocItem } from './types.js';
 
 export type {
   TypstCompileResult,
@@ -26,9 +26,19 @@ export {
   normalizeTocDepths,
 } from './html.js';
 export { filePathToRoutePath, scanTypstPages } from './scan.js';
+export { generateTypstPageModule } from './codegen.js';
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+function toPageHeaders(toc: TypstTocItem[]) {
+  return toc.map(item => ({
+    id: item.id,
+    text: item.text,
+    depth: item.depth,
+    charIndex: item.charIndex,
+  }));
+}
 
 function uniqExtensions(
   current: string[] | undefined,
@@ -128,12 +138,7 @@ export function pluginTypst(
       if (cached.description) {
         pageData.description = cached.description;
       }
-      pageData.toc = cached.toc.map(item => ({
-        id: item.id,
-        text: item.text,
-        depth: item.depth,
-        charIndex: 0,
-      }));
+      pageData.toc = toPageHeaders(cached.toc);
       pageData.content = cached.textContent;
       pageData.frontmatter = {
         ...pageData.frontmatter,
@@ -155,6 +160,9 @@ export function pluginTypst(
         if (!cached) continue;
         page.title = cached.title;
         page.content = cached.textContent;
+        // Search index is snapshotted before extendPageData, so the TOC
+        // (including charIndex) has to be copied here.
+        page.toc = toPageHeaders(cached.toc);
         if (cached.description) {
           page.description = cached.description;
         }
