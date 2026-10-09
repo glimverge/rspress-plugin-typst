@@ -14,6 +14,8 @@ jobs:
       publish: true
       # Build dist/ before npm publish (see package.json prepublishOnly / files).
       build: pnpm build
+      # npm dist-tag for prereleases (e.g. 0.0.2-alpha.0 → npm i pkg@alpha)
+      tag: alpha
     permissions:
       contents: write
       id-token: write
