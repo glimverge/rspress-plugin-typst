@@ -12,3 +12,7 @@ playground/docs/.rspress
 .idea
 .vscode
 *.node
+test-results
+playwright-report
+blob-report
+playwright/.cache

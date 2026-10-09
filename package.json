@@ -48,9 +48,12 @@
     "build": "rslib build",
     "dev": "rslib build --watch",
     "test": "pnpm build && node --experimental-strip-types --test tests/**/*.test.ts",
+    "test:e2e": "pnpm build && pnpm playground:build && playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "playground:dev": "pnpm --filter playground dev",
     "playground:build": "pnpm --filter playground build",
+    "playground:preview": "pnpm --filter playground preview --host 127.0.0.1 --port 4173",
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
@@ -59,6 +62,7 @@
   },
   "devDependencies": {
     "@microsoft/api-extractor": "^7.59.4",
+    "@playwright/test": "1.58.2",
     "@rsbuild/plugin-react": "^1.4.0",
     "@rslib/core": "^1.0.3",
     "@rspress/core": "^2.0.23",
