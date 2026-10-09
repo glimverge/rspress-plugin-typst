@@ -1,0 +1,15 @@
+node_modules
+dist
+doc_build
+.DS_Store
+*.log
+.cache
+.rspress
+playground/doc_build
+playground/docs/.rspress
+*.tsbuildinfo
+.turbo
+.idea
+.vscode
+crates/**/target
+*.node
